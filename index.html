@@ -553,40 +553,68 @@
         }
 
         // --- Core Logic Functions ---
-        async function processSingleFile(file, quality) { /* ... remains same ... */
-            return new Promise((resolve, reject) => {
-                if (!file || !file.type.startsWith('image/')) { return reject(new Error('Invalid file type')); }
-                const reader = new FileReader();
-                reader.onload = (e_reader) => {
-                    const originalImageDataUrl = e_reader.target.result;
-                    const image = new Image();
-                    image.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const MAX_WIDTH = 1920; const MAX_HEIGHT = 1080;
-                        let width = image.naturalWidth; let height = image.naturalHeight;
-                        if (width > height) { if (width > MAX_WIDTH) { height = Math.round(height * MAX_WIDTH / width); width = MAX_WIDTH; } }
-                        else { if (height > MAX_HEIGHT) { width = Math.round(width * MAX_HEIGHT / height); height = MAX_HEIGHT; } }
-                        canvas.width = width; canvas.height = height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-                        const mimeType = 'image/jpeg';
-                        const compressedDataUrl = canvas.toDataURL(mimeType, quality);
-                        const compressedBlob = dataURLtoBlob(compressedDataUrl);
-                        if (!compressedBlob) { return reject(new Error('Failed to create compressed blob')); }
-                        const originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
-                        const compressedFilename = `${originalFileName}_q${(quality * 100).toFixed(0)}.jpg`; // Use fixed quality int
-                        resolve({
-                            originalFile: file, originalSize: file.size, compressedDataUrl: compressedDataUrl,
-                            compressedBlob: compressedBlob, compressedSize: compressedBlob.size, filename: compressedFilename
-                        });
-                    };
-                    image.onerror = () => reject(new Error(`Could not load image data for ${file.name}`));
-                    image.src = originalImageDataUrl;
-                };
-                reader.onerror = () => reject(new Error(`Could not read file ${file.name}`));
-                reader.readAsDataURL(file);
-            });
+        async function processSingleFile(file, quality) {
+    return new Promise((resolve, reject) => {
+        if (!file || !file.type.startsWith('image/')) {
+            return reject(new Error('Invalid file type'));
         }
+        const reader = new FileReader();
+        reader.onload = (e_reader) => {
+            const originalImageDataUrl = e_reader.target.result;
+            const image = new Image();
+            image.onload = () => {
+                const canvas = document.createElement('canvas');
+                // --- Canvas resizing logic remains the same ---
+                const MAX_WIDTH = 1920; const MAX_HEIGHT = 1080;
+                let width = image.naturalWidth; let height = image.naturalHeight;
+                if (width > height) { if (width > MAX_WIDTH) { height = Math.round(height * MAX_WIDTH / width); width = MAX_WIDTH; } }
+                else { if (height > MAX_HEIGHT) { width = Math.round(width * MAX_HEIGHT / height); height = MAX_HEIGHT; } }
+                canvas.width = width; canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                // --- Draw image remains the same ---
+                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                // **** START MODIFICATION ****
+                let outputMimeType = 'image/jpeg'; // Default to JPEG
+                let outputExtension = 'jpg';
+                let compressedDataUrl;
+
+                // Check if the original file was a PNG
+                if (file.type === 'image/png') {
+                    outputMimeType = 'image/png';
+                    outputExtension = 'png';
+                    // Quality parameter is ignored for 'image/png'
+                    compressedDataUrl = canvas.toDataURL(outputMimeType);
+                    // Note: console.log('Outputting PNG (quality slider ignored)');
+                } else {
+                    // For non-PNG, use JPEG with quality setting
+                    compressedDataUrl = canvas.toDataURL(outputMimeType, quality);
+                     // Note: console.log(`Outputting JPEG with quality ${quality}`);
+                }
+
+                const compressedBlob = dataURLtoBlob(compressedDataUrl);
+                if (!compressedBlob) {
+                    return reject(new Error('Failed to create compressed blob'));
+                }
+
+                const originalFileName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+                // Adjust filename based on output type and quality (only add quality for JPEG)
+                const qualitySuffix = (outputExtension === 'jpg') ? `_q${(quality * 100).toFixed(0)}` : '';
+                const compressedFilename = `${originalFileName}${qualitySuffix}.${outputExtension}`;
+                // **** END MODIFICATION ****
+
+                resolve({
+                    originalFile: file, originalSize: file.size, compressedDataUrl: compressedDataUrl,
+                    compressedBlob: compressedBlob, compressedSize: compressedBlob.size, filename: compressedFilename
+                });
+            };
+            image.onerror = () => reject(new Error(`Could not load image data for ${file.name}`));
+            image.src = originalImageDataUrl;
+        };
+        reader.onerror = () => reject(new Error(`Could not read file ${file.name}`));
+        reader.readAsDataURL(file);
+    });
+}
 
         // --- Event Listeners ---
 

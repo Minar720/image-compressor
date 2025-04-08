@@ -548,7 +548,7 @@ button:hover:not(:disabled) {
                 <span id="qualityValue">0.7</span>
             </div>
             <div class="button-group">
-                <button id="compressBtn" disabled>Optimize Images</button> <button id="downloadZipBtn" disabled style="display: none;">Download All (ZIP)</button>
+                <button id="compressBtn" onclick="gtag('event', 'files_selected', {event_category: 'Documents'});" disabled>Optimize Images</button> <button id="downloadZipBtn" disabled style="display: none;">Download All (ZIP)</button>
             </div>
              <div id="status" class="status">Select one or more images to begin.</div>
         </div>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy for Image Optimizer Pro.">
+    <meta name="robots" content="index, follow">
+    <title>Privacy Policy - Image Optimizer Pro</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+         :root { /* Define basic variables or copy from index.html */
+            --primary-color: #6a11cb; --secondary-color: #2575fc; --text-dark: #343a40;
+            --background-light: #ffffff; --background-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --font-family: 'Poppins', sans-serif; --border-radius: 8px; --shadow-color: rgba(0, 0, 0, 0.1);
+             --border-color: #dee2e6; --text-muted: #6c757d; --transition-speed: 0.3s;
+         }
+        body { font-family: var(--font-family); line-height: 1.7; background: var(--background-gradient); color: var(--text-dark); padding: 40px 20px; }
+        .container { background-color: var(--background-light); padding: 40px; border-radius: var(--border-radius); box-shadow: 0 10px 30px var(--shadow-color); max-width: 900px; margin: 0 auto; }
+        h1 { text-align: center; color: var(--primary-color); margin-bottom: 30px; font-weight: 700; }
+        h2 { font-weight: 600; color: var(--text-dark); margin-top: 1.5em; margin-bottom: 0.8em; }
+        p { margin-bottom: 1.2em; }
+        ul { margin-left: 25px; margin-bottom: 1.2em; }
+        li { margin-bottom: 0.5em; }
+        a { color: var(--secondary-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link { display: block; text-align: center; margin-top: 30px; font-weight: 500; }
+         /* Copy footer styles from index.html if needed or use shared CSS */
+         .page-footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.9em; color: var(--text-muted); }
+         .page-footer nav { margin-top: 10px; }
+         .page-footer nav a { color: var(--primary-color); text-decoration: none; margin: 0 8px; transition: color var(--transition-speed) ease; }
+         .page-footer nav a:hover { color: var(--secondary-color); text-decoration: underline; }
+         /* Add these Keyframes definitions somewhere in your <style> block */
+@keyframes animateGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonShake {
+  0%, 100% { transform: translateY(-3px) translateX(0); } /* Keep the lift */
+  10%, 30%, 50%, 70%, 90% { transform: translateY(-3px) translateX(-2px) rotate(-1deg); }
+  20%, 40%, 60%, 80% { transform: translateY(-3px) translateX(2px) rotate(1deg); }
+}
+
+@keyframes pulseLoader {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(106, 17, 203, 0.4); } /* Use --primary-color rgba */
+    70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(106, 17, 203, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(106, 17, 203, 0); }
+}
+
+
+/* Modify the 'body' rule */
+body {
+    font-family: var(--font-family);
+    line-height: 1.7;
+    /* Use a larger background size for animation */
+    background: var(--background-gradient);
+    background-size: 300% 300%; /* Increased size */
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    /* Add the animation */
+    animation: animateGradient 18s ease infinite; /* Adjust time as needed */
+}
+
+/* Modify the '.container' rule */
+.container {
+    background-color: var(--background-light);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+    transition: all var(--transition-speed) ease;
+    /* Add entry animation */
+    opacity: 0; /* Start hidden */
+    animation: slideUpFadeIn 0.8s ease forwards;
+    animation-delay: 0.2s; /* Slight delay */
+}
+
+
+/* Modify the 'button:hover:not(:disabled)' rule */
+button:hover:not(:disabled) {
+    /* transform: translateY(-3px); */ /* Remove simple translate */
+    box-shadow: 0 7px 20px rgba(45, 55, 72, 0.25);
+    filter: brightness(1.15); /* Slightly brighter */
+    /* Add shake animation */
+    animation: buttonShake 0.4s ease-in-out;
+}
+
+/* Modify the '.result-item:hover' rule */
+.result-item:hover {
+    /* Add a slight rotation */
+    transform: translateY(-7px) scale(1.03) rotate(1.5deg);
+    box-shadow: 0 12px 28px var(--shadow-hover-color); /* Slightly larger shadow */
+}
+
+/* Modify the '.loader' rule */
+.loader {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--primary-color); /* Use solid color for pulse base */
+    /* border-top-color: var(--primary-color); */ /* Original spin used this */
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+     /* Combine or choose animation */
+     /* animation: spin 0.8s linear infinite; */ /* Original spin */
+     animation: pulseLoader 1.2s infinite cubic-bezier(.66,.16,.68,.83); /* Pulse effect */
+     /* To combine, you might need pseudo-elements or more complex setup */
+}
+/* Remove the old @keyframes spin if only using pulse */
+/* @keyframes spin { ... } */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p>Last Updated: April 8, 2025</p> <p>
+            This Privacy Policy describes how Vortex Web Dynamics ("we", "us", or "our") handles information in relation to the Image Optimizer Pro web application (the "Service").
+        </p>
+
+        <h2>Information We Do Not Collect</h2>
+        <p>
+            Our Service is designed with privacy in mind. We operate entirely client-side within your web browser.
+        </p>
+        <ul>
+            <li><strong>We do not collect, store, or transmit the images you process.</strong> All image processing happens locally on your device.</li>
+            <li><strong>We do not require user accounts or collect personal identification information</strong> like names, email addresses, or IP addresses directly through the core image processing function.</li>
+        </ul>
+
+        <h2>Cookies</h2>
+        <p>
+            The core functionality of the Service does not use cookies. However, if third-party services like Google Analytics or Google AdSense are implemented [REMOVE THIS PHRASE IF NOT USING THEM], they may use cookies as described in their respective privacy policies. You can manage cookie preferences through your browser settings.
+        </p>
+
+        <h2>Data Security</h2>
+        <p>
+            As we do not collect or store your images or personal data through the core service, the primary security relies on your own device and browser security.
+        </p>
+
+        <h2>Changes to This Privacy Policy</h2>
+        <p>
+            We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.
+        </p>
+
+        <h2>Contact Us</h2>
+        <p>
+            If you have any questions about this Privacy Policy, please contact us at [Your Contact Email or Link to a Contact Form/Page].
+        </p>
+
+
+        <a href="index.html" class="back-link">← Back to Image Optimizer</a>
+
+         <footer class="page-footer">
+             <p>&copy; 2025 Vortex Web Dynamics. All Rights Reserved.</p>
+             <nav>
+                 <a href="index.html">Home</a> |
+                 <a href="about.html">About Us</a> |
+                 <a href="privacy.html">Privacy Policy</a>
+             </nav>
+         </footer>
+
+    </div>
+</body>
+</html>

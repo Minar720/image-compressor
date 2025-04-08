@@ -3,6 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QX3WGDZYCY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QX3WGDZYCY');
+</script>
+    <meta name="description" content="Optimize and compress JPEG & PNG images quickly and easily directly in your browser. Adjust quality, handle multiple files, and download as individual images or a ZIP archive. No uploads required.">
+    <meta name="keywords" content="image compressor, image optimizer, compress jpeg, compress png, image size reducer, photo compressor, zip images">
+    <meta name="author" content="Vortex Web Dynamics"> <meta name="robots" content="index, follow"> <meta property="og:title" content="✨ Impressive Image Compressor ✨">
+    <meta property="og:description" content="Optimize and compress JPEG & PNG images quickly in your browser.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:title" content="✨ Impressive Image Compressor ✨">
+    <meta name="twitter:description" content="Optimize and compress JPEG & PNG images quickly in your browser.">
     <title>✨ Impressive Image Compressor ✨</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -392,8 +408,131 @@
              .button-group { flex-direction: column; }
              .control-section, .results-section { padding: 20px; }
         }
+        /* --- Footer Styling --- */
+    .page-footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        font-size: 0.9em;
+        color: var(--text-muted);
+    }
+    .page-footer nav {
+        margin-top: 10px;
+    }
+    .page-footer nav a {
+        color: var(--primary-color);
+        text-decoration: none;
+        margin: 0 8px;
+        transition: color var(--transition-speed) ease;
+    }
+    .page-footer nav a:hover {
+        color: var(--secondary-color);
+        text-decoration: underline;
+    }
+
+
+    /* Add these Keyframes definitions somewhere in your <style> block */
+@keyframes animateGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes slideUpFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes buttonShake {
+  0%, 100% { transform: translateY(-3px) translateX(0); } /* Keep the lift */
+  10%, 30%, 50%, 70%, 90% { transform: translateY(-3px) translateX(-2px) rotate(-1deg); }
+  20%, 40%, 60%, 80% { transform: translateY(-3px) translateX(2px) rotate(1deg); }
+}
+
+@keyframes pulseLoader {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(106, 17, 203, 0.4); } /* Use --primary-color rgba */
+    70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(106, 17, 203, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(106, 17, 203, 0); }
+}
+
+
+/* Modify the 'body' rule */
+body {
+    font-family: var(--font-family);
+    line-height: 1.7;
+    /* Use a larger background size for animation */
+    background: var(--background-gradient);
+    background-size: 300% 300%; /* Increased size */
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    /* Add the animation */
+    animation: animateGradient 18s ease infinite; /* Adjust time as needed */
+}
+
+/* Modify the '.container' rule */
+.container {
+    background-color: var(--background-light);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    max-width: 1000px;
+    width: 100%;
+    text-align: center;
+    transition: all var(--transition-speed) ease;
+    /* Add entry animation */
+    opacity: 0; /* Start hidden */
+    animation: slideUpFadeIn 0.8s ease forwards;
+    animation-delay: 0.2s; /* Slight delay */
+}
+
+
+/* Modify the 'button:hover:not(:disabled)' rule */
+button:hover:not(:disabled) {
+    /* transform: translateY(-3px); */ /* Remove simple translate */
+    box-shadow: 0 7px 20px rgba(45, 55, 72, 0.25);
+    filter: brightness(1.15); /* Slightly brighter */
+    /* Add shake animation */
+    
+}
+
+/* Modify the '.result-item:hover' rule */
+.result-item:hover {
+    /* Add a slight rotation */
+    transform: translateY(-7px) scale(1.03) rotate(1.5deg);
+    box-shadow: 0 12px 28px var(--shadow-hover-color); /* Slightly larger shadow */
+}
+
+/* Modify the '.loader' rule */
+.loader {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--primary-color); /* Use solid color for pulse base */
+    /* border-top-color: var(--primary-color); */ /* Original spin used this */
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+     /* Combine or choose animation */
+     /* animation: spin 0.8s linear infinite; */ /* Original spin */
+     animation: pulseLoader 1.2s infinite cubic-bezier(.66,.16,.68,.83); /* Pulse effect */
+     /* To combine, you might need pseudo-elements or more complex setup */
+}
+/* Remove the old @keyframes spin if only using pulse */
+/* @keyframes spin { ... } */
     </style>
 </head>
+
 <body>
 
     <div class="container">
@@ -418,7 +557,15 @@
             <h2>Optimization Results</h2> <div id="resultsContainer">
                 </div>
         </div>
+        <footer class="page-footer">
+            <p>&copy; 2025 Vortex Web Dynamics. All Rights Reserved.</p> <nav>
+                <a href="index.html">Home</a> |
+                <a href="about.html">About Us</a> |
+                <a href="privacy.html">Privacy Policy</a>
+                </nav>
+        </footer>
     </div>
+
 
     <script>
         // Check for fflate library
